@@ -5,8 +5,7 @@ It will transform the select|update|insert|delete|set type SQL to abstract SQL.
 ```sh
 git clone https://github.com/lindeci/mysql_fingerprint.git
 cd mysql_fingerprint
-yum install flex
-g++ sql_fingerprint.cc -o sql_fingerprint
+sh generate.sh
 ```
 # usage
 ```sh
