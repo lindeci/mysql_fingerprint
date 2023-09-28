@@ -5,6 +5,7 @@ It will transform the select|update|insert|delete|set type SQL to abstract SQL.
 ```sh
 git clone https://github.com/lindeci/mysql_fingerprint.git
 cd mysql_fingerprint
+yum install flex
 g++ sql_fingerprint.cc -o sql_fingerprint
 ```
 # usage
@@ -37,3 +38,7 @@ UPDATE T_USER SET NAME=? WHERE ID=?;
 DELETE FROM A WHERE ID in ( ? );
 CREATE TABLE A(ID INT PRIMARY KEY COMMENT "主键ID");
 ```
+# 对比业内同款工具的优势
+1. 不会把带有数字的关键字转换为 ？,比如把 crc32 误转换成 crc?
+2. 不会把建表语句改得不能执行，很多同款工具会转换 DDL 语句，导致转换后的语句不能 prepare 成功
+3. 生成的SQL指纹都能 prepare 成功
